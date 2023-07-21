@@ -1,0 +1,12 @@
+{
+  "extends": [
+    "next/core-web-vitals",
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "plugin:import/recommended",
+    "plugin:react-hooks/recommended"
+  ],
+  "rules": {
+    "no-unused-vars": "off"
+  }
+}
