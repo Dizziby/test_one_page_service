@@ -13,3 +13,11 @@
   border: 1px solid grey;
   border-bottom: none;
 }
+
+.clearButton {
+  background: #e8e8e8;
+  border: none;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.5rem;
+  margin-bottom: 0.25rem;
+}

@@ -8,12 +8,14 @@ const CodeBlock = ({
   selectedCodes,
   setSelectedCodes,
   setIsUpOpenList,
+  isSelectedCheckbox,
 }: {
   code: ICodeBlock
   level: number
   selectedCodes: string[]
   setSelectedCodes: (value: string[]) => void
   setIsUpOpenList?: (value: boolean) => void
+  isSelectedCheckbox?: boolean
 }) => {
   const [isOpenList, setIsOpenList] = useState(false)
 
@@ -25,13 +27,17 @@ const CodeBlock = ({
     if (code.code ? selectedCodes.includes(code.code) : false) {
       setIsUpOpenList && setIsUpOpenList(true)
     }
-  }, [code.code, selectedCodes, setIsUpOpenList])
+  }, [])
 
   useEffect(() => {
     if (isOpenList) {
       setIsUpOpenList && setIsUpOpenList(true)
     }
   }, [isOpenList, setIsUpOpenList])
+
+  const isCheckedCheckbox = code.code
+    ? selectedCodes?.includes(code.code)
+    : false
 
   return (
     <>
@@ -44,6 +50,8 @@ const CodeBlock = ({
         handleOpenList={handleOpenList}
         isCloseButton={!!code.children}
         isOpenList={isOpenList}
+        isCheckedCheckbox={isCheckedCheckbox}
+        isSelectedCheckbox={isSelectedCheckbox}
       />
       {code.children && (
         <div
@@ -51,7 +59,7 @@ const CodeBlock = ({
             display: isOpenList ? 'block' : 'none',
           }}
         >
-          {code.children.map((data, index) => (
+          {code.children.map((data) => (
             <CodeBlock
               key={data.code || data.title}
               code={data}
@@ -59,6 +67,7 @@ const CodeBlock = ({
               selectedCodes={selectedCodes}
               setSelectedCodes={setSelectedCodes}
               setIsUpOpenList={setIsOpenList}
+              isSelectedCheckbox={isCheckedCheckbox || isSelectedCheckbox}
             />
           ))}
         </div>

@@ -1,5 +1,5 @@
 import React from 'react'
-import Checkbox from '@/src/components/Checkbox'
+import Checkbox from '@/src/components/common/Checkbox'
 import ArrowDown from '@/src/icons/ArrowDown'
 import styles from './CodeItem.module.css'
 
@@ -12,6 +12,8 @@ const CodeItem = ({
   selectedCodes,
   setSelectedCodes,
   handleOpenList,
+  isCheckedCheckbox,
+  isSelectedCheckbox,
 }: {
   title: string
   code?: string | undefined
@@ -21,6 +23,8 @@ const CodeItem = ({
   selectedCodes: string[]
   setSelectedCodes: (value: string[]) => void
   handleOpenList: () => void
+  isCheckedCheckbox: boolean
+  isSelectedCheckbox: boolean
 }) => {
   const handleSelectedCodes = (checked: boolean) => {
     if (!code) return
@@ -38,11 +42,13 @@ const CodeItem = ({
     <div
       className={styles.container}
       style={{ paddingLeft: `${10 + level * 20}px` }}
+      onClick={handleOpenList}
     >
       <div className={styles.content}>
         {code ? (
           <Checkbox
-            checked={selectedCodes?.includes(code)}
+            isChecked={isCheckedCheckbox}
+            isSelected={isSelectedCheckbox}
             onChange={(checked) => handleSelectedCodes(checked)}
           />
         ) : null}
@@ -57,7 +63,6 @@ const CodeItem = ({
         <div
           className={styles.arrow}
           style={{ transform: isOpenList ? 'rotate(180deg)' : '' }}
-          onClick={handleOpenList}
         >
           <ArrowDown />
         </div>
