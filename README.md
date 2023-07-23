@@ -2,6 +2,8 @@
 
 This project is a service of search and selection of OKVED codes
 
+Deploy link: https://hilarious-starlight-60a7e9.netlify.app/
+
 ![app-screen](https://i.postimg.cc/kgysw91j/Screenshot-15.png, "app")
 
 ## Folder structure
