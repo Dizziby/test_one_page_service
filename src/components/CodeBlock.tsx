@@ -27,7 +27,7 @@ const CodeBlock = ({
     if (code.code ? selectedCodes.includes(code.code) : false) {
       setIsUpOpenList && setIsUpOpenList(true)
     }
-  }, [])
+  }, [code.code, selectedCodes, setIsUpOpenList])
 
   useEffect(() => {
     if (isOpenList) {
