@@ -1,6 +1,6 @@
 import React from 'react'
 import Checkbox from '@/src/components/common/Checkbox'
-import ArrowDown from '@/src/icons/ArrowDown'
+import ArrowDownIcon from '@/src/icons/ArrowDownIcon'
 import styles from './CodeItem.module.css'
 
 const CodeItem = ({
@@ -64,7 +64,7 @@ const CodeItem = ({
           className={styles.arrow}
           style={{ transform: isOpenList ? 'rotate(180deg)' : '' }}
         >
-          <ArrowDown />
+          <ArrowDownIcon />
         </div>
       ) : null}
     </div>

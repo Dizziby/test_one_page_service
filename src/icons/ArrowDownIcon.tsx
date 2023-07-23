@@ -1,6 +1,6 @@
 import React from 'react'
 
-const ArrowDown = ({
+const ArrowDownIcon = ({
   width = 16,
   height = 16,
 }: {
@@ -26,4 +26,4 @@ const ArrowDown = ({
   )
 }
 
-export default ArrowDown
+export default ArrowDownIcon

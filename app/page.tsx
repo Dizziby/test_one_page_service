@@ -8,6 +8,7 @@ import { getData } from '@/src/utils/getData'
 import { ICodeBlock } from '@/src/types/types'
 import CodeBlock from '@/src/components/CodeBlock'
 import { useDebounce } from '@/src/hooks/useDebouce'
+import { filterTreeObject } from '@/src/utils/filterTreeObject'
 
 export default function Home() {
   const [selectedCodes, setSelectedCodes] = useLocalStorage<string[]>(
@@ -22,27 +23,9 @@ export default function Home() {
 
   const filteredCodeList = useMemo((): any => {
     if (!debouncedSearchValue) return codeList
-
-    const myFilters = (list: ICodeBlock[], searchValue: string) => {
-      return list.map((item) => {
-        if (item.title.toLowerCase().includes(searchValue.toLowerCase())) {
-          return item
-        } else {
-          if (item.children && item.children.length) {
-            const filteredItems = myFilters(item.children, searchValue).filter(
-              (item) => item
-            )
-            return filteredItems.length
-              ? { ...item, children: filteredItems }
-              : null
-          } else {
-            return null
-          }
-        }
-      })
-    }
-
-    return myFilters(codeList, debouncedSearchValue).filter((item) => item)
+    return filterTreeObject(codeList, debouncedSearchValue).filter(
+      (item) => item
+    )
   }, [codeList, debouncedSearchValue])
 
   const clearAllSelectedCodes = () => {
